@@ -22,6 +22,7 @@ jobs:
       # 3. تدريب النموذج فقط إذا تم ذكره في رسالة الـ commit
       # قمنا بإعطاء هذه الخطوة "id" لكي نستطيع معرفة حالتها في الخطوات القادمة
       - name: Train Model
+        id: train_step
         if: contains(github.event.head_commit.message, 'training')
         run: python model_training.py > train_log.txt 2>&1
 
