@@ -28,7 +28,7 @@ jobs:
 
       # 4. حفظ السجلات (Logs) في حال فشل خطوة التدريب تحديداً
       - name: Upload Logs on Failure
-        if: failure() && steps.train_step.outcome == 'failure'
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: error-logs
@@ -36,7 +36,7 @@ jobs:
 
       # 5. التقييم التلقائي في حال نجاح خطوة التدريب
       - name: Evaluate Model
-        if: success() && steps.train_step.outcome == 'success'
+        if: success() 
         run: python model_evaluation.py
 
       # 6. تنظيف الموارد المؤقتة دائماً (في جميع الأحوال سواء نجاح أو فشل)
